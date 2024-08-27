@@ -2,12 +2,16 @@ const express= require("express")
 const app= express()
 const mongoose= require("mongoose")
 const Product= require("./models/product.model")
-
+//middleware
 app.use(express.json())
-
+app.use(express.urlencoded({extended: false}))
 app.get('/',(req,res)=>{
     res.send("hii")
 })
+
+//routes
+//app.use("/api/products", productRoutes)
+
 app.get('/api/products',async(req,res)=>{
     try{
         const products= await Product.find({})
